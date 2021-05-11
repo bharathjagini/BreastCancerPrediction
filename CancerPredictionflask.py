@@ -8,8 +8,9 @@ from flask import request
 from twilio.rest import Client
 app = Flask(__name__)
 cors = CORS(app)
+#auth token for Twilio trial account changing on daily basis.Make sure to change and run
 account_sid ='AC64206d20e1b11dc96240ecadaf2c3be6'
-auth_token = '06a66a2c5e36b83ca21932e5bd6cbfb2'
+auth_token = '9a0929cb7848c0d68a72045c6a8234ff'
 client = Client(account_sid, auth_token)
 #cors = CORS(app, resources={"*": {"origins": "*"}})
 #CORS(app)
