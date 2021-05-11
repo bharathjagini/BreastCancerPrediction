@@ -2,6 +2,7 @@ import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 import seaborn as sns
+from sklearn.svm import SVC
 import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -51,6 +52,14 @@ class CancerPrediction:
         confmat = confusion_matrix(y_test,y_pred)
         sns.heatmap(confmat,annot=True,fmt="d")
 
+    def svc(self,X_train, X_test, y_train, y_test):
+        svc = SVC(kernel = 'linear', random_state = 0).fit(X_train,y_train)
+        pickle.dump(svc, open('svc.pkl','wb'))
+        #y_pred_svc_v= svc.predict(X_v)
+        #print(f"Classsification Report(Validation set):\n{classification_report(y_v,y_pred_svc_v)}")
+        y_pred_svc= svc.predict(X_test)
+        print(f"Classsification Report(Test set):\n{classification_report(y_test,y_pred_svc)}")
+
 if __name__ == "__main__":
  cancerPrediction=CancerPrediction()
  data=cancerPrediction.load_data()
@@ -60,7 +69,7 @@ if __name__ == "__main__":
  for i in li:
     Selected_df[i]=Selected_df[[i]].apply(cancerPrediction.log_transform, axis=1)
  X_train, X_test, y_train, y_test=cancerPrediction.trainAndTestData(Selected_df,y)
- cancerPrediction.logreg(X_train, X_test, y_train, y_test)
+ cancerPrediction.svc(X_train, X_test, y_train, y_test)
  
 
  

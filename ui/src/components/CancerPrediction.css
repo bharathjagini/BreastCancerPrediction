@@ -74,4 +74,15 @@ h1{
     box-shadow: 0 2px 0 0 rgb(55 59 63 / 50%);
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.safe
+{
+    margin-top: 130px;
+    margin-left: 630px;
+}
+.risk
+{
+    color: red;
+    margin-top: 130px;
+    margin-left: 630px;
+}
 

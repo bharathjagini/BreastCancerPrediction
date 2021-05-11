@@ -1,5 +1,6 @@
 from flask import Flask,jsonify
 import numpy as np
+import pandas as pd
 import pickle 
 import json
 from flask_cors import CORS, cross_origin
@@ -8,26 +9,29 @@ from twilio.rest import Client
 app = Flask(__name__)
 cors = CORS(app)
 account_sid ='AC64206d20e1b11dc96240ecadaf2c3be6'
-auth_token = 'bf3135dcd4cba77ef62f1c376feb8675'
+auth_token = '06a66a2c5e36b83ca21932e5bd6cbfb2'
 client = Client(account_sid, auth_token)
 #cors = CORS(app, resources={"*": {"origins": "*"}})
 #CORS(app)
-model = pickle.load(open('model.pkl', 'rb'))
+model = pickle.load(open('svc.pkl', 'rb'))
 @app.route("/predictCancer",methods=['POST'])
 #@cross_origin()
-def hello():
+def cancerPrediction():
     
-    #new_quark = request.get_json()
-    print('new_quark')
     print(request.is_json)
     content=request.get_json(force=True)
-    print (content['radiusMean'])
-    values=([content['radiusMean'],content['textureMean'],content['perimeterMean'],content['areaMean'],content['perimeterSe'],content['areaSe'],content['radiusWorst'],content['textureWorst'],content['perimeterWorst'],content['areaWorst']])
-    final_Values = [np.array(values)]
-    print(final_Values)
-    #print(json.dumps(predictCancerReq))
-   # print('predictCancerReq',predictCancerReq['radiusMean'])
-    pred2=model.predict(final_Values)
+    predValues=[[content['concavePointsWorst'],content['perimeterWorst'],content['concavePointsMean'],content['radiusWorst'],content['perimeterMean'],content['areaWorst'],content['radiusMean'],content['areaMean'],content['concavityMean'],content['concavityWorst']]]
+    print(predValues)
+    df = pd.DataFrame (predValues, columns = ['concavePointsWorst','perimeterWorst','concavePointsMean','radiusWorst','perimeterMean','areaWorst','radiusMean','areaMean','concavityMean','concavityWorst'])
+    print(df.head(1))
+    cols = df.select_dtypes(exclude=['float']).columns
+    df[cols] = df[cols].apply(pd.to_numeric, downcast='float', errors='coerce')
+    print(df.dtypes)
+    for i in df:
+     df[i]=df[[i]].apply(log_transform, axis=1)
+    
+    print(df)
+    pred2=model.predict(df)
     #pred=model.predict([[17.99,	10.38,	122.80,	1001.0,	8.589,	153.40,	25.38,	17.33,	184.60,	2019.0]])
     #pred1=model.predict([[13.54,	14.36,	87.46,	566.3,	2.058,	23.56,	15.11,	19.26,	99.70,	711.2]])
     print(pred2[0])
@@ -46,3 +50,6 @@ def hello():
                           )
     print(message.sid)                      
     return str(result)
+def log_transform(col):
+    print(col)
+    return np.log1p(col[0])
