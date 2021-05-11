@@ -39,7 +39,7 @@ SVM CLassifier with kernel as linear gives us the best accuracy
 ## Contributions
 * Tanay Ganeriwal - Data Visualization(Finding correlation bar graph and plotting histograms) and KNN
   
-* Bharath Jagini - Front-End API, Random Forest Classifier and Decision Tree Classifier
+* Bharath Jagini - Random Forest Classifier,Decision Tree Classifier,React.js Front-End and FlaskAPI
   
 * Premchand Jayachandran - PCA, SVM and Gaussian NB.
   
