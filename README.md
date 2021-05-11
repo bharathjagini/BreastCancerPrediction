@@ -37,8 +37,11 @@ Different models have been tried like Logistic Regerssion, Random Forest Classif
 
 SVM CLassifier with kernel as linear gives us the best accuracy
 ## Contributions
-Tanay Ganeriwal - Data Visualization(Finding correlation bar graph and plotting histograms) and KNN
-Bharath Jagini - Front-End API, Random Forest Classifier and Decision Tree Classifier
-Premchand Jayachandran - PCA, SVM and Gaussian NB.
-Tejas Mahajan - Initial Data exploration, removing skewness and Logistic regression.
+*Tanay Ganeriwal - Data Visualization(Finding correlation bar graph and plotting histograms) and KNN
+  
+*Bharath Jagini - Front-End API, Random Forest Classifier and Decision Tree Classifier
+  
+*Premchand Jayachandran - PCA, SVM and Gaussian NB.
+  
+*Tejas Mahajan - Initial Data exploration, removing skewness and Logistic regression.
 
