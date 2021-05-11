@@ -24,3 +24,21 @@ resulting in 30 features. For instance, field 3 is Mean Radius, field
 13 is Radius SE, field 23 is Worst Radius.
 ## Dataset
 [Kaggle Dataset](https://www.kaggle.com/uciml/breast-cancer-wisconsin-data)
+
+
+## Data Pre-Processing
+The target was converted into 0 and 1.
+Skewness is removed for the selected features using log function.
+
+## Feature Engineering
+We have tried using different functions like selecting the k best features, PCA to see if which of them offer better accuracy.
+## Model
+Different models have been tried like Logistic Regerssion, Random Forest Classifier, Decision Tree Classifier, K Neighbors Classifier, Gaussian Naive Bayes and SVM Classifier. 
+
+SVM CLassifier with kernel as linear gives us the best accuracy
+## Contributions
+Tanay Ganeriwal - Data Visualization(Finding correlation bar graph and plotting histograms) and KNN
+Bharath Jagini - Front-End API, Random Forest Classifier and Decision Tree Classifier
+Premchand Jayachandran - PCA, SVM and Gaussian NB.
+Tejas Mahajan - Initial Data exploration, removing skewness and Logistic regression.
+
