@@ -38,17 +38,18 @@ Different models have been tried like Logistic Regerssion, Random Forest Classif
 SVM CLassifier with kernel as linear gives us the best accuracy
 
 ## Project Timeline
-1. We did initial exploration and Used a base model Logistic regression where we were getting an accuracy of 95%. 
+1. We did initial exploration and used a base model Logistic regression where we were getting an accuracy of 95%. 
 2. Later we tried to see if accuracy increases with other models and it did increase to 96% being the highest.
-3. Next we tried Select K best features where we experimented with different Number of features and achieved highest accuracy of 97% with SVM linear kernel.
+3. Next we tried Select K best features where we experimented with different number of features and achieved highest accuracy of 97% with SVM linear kernel.
 4. After that we tried PCA, where we tried to find the best value for the number fo components by plotting the explained variance with the number of features and also tried with different explained variance(95%-99%) and we achieved a accurcay of 98%.
-5. We also removed the skewness and tried using the top 10 correlated features and it also got an accuracy of 98%
+5. We also removed the skewness and tried using the top 10 correlated features and it also got an accuracy of 98% SVM (Kernel Linear).
 ## Contributions
-* Tanay Ganeriwal (015278042) - Data Visualization(Finding correlation bar graph and plotting histograms) and KNN
   
 * Bharath Jagini (015260232) - Front-End API, Random Forest Classifier and Decision Tree Classifier
   
 * Premchand Jayachandran (015326428) - PCA, SVM and Gaussian NB.
+
+* Tanay Ganeriwal (015278042) - Data Visualization(Finding correlation bar graph and plotting histograms) and KNN
   
 * Tejas Mahajan (015319421) - Initial Data exploration, removing skewness and Logistic regression.
 
