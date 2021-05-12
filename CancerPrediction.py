@@ -27,10 +27,12 @@ class CancerPrediction:
          return data
 
     def selectFeatures(self,data):
-         select_feature = SelectKBest(chi2, k=10).fit(data.drop('diagnosis',axis = 1 ), data['diagnosis'])
-         select_feature.transform(data.drop('diagnosis',axis = 1))
-         selected_columns = np.array(data.drop('diagnosis',axis = 1).columns)[select_feature.get_support()]
-         Selected_df = pd.DataFrame(select_feature.transform(data.drop('diagnosis',axis = 1)),columns=selected_columns)
+         #select_feature = SelectKBest(chi2, k=10).fit(data.drop('diagnosis',axis = 1 ), data['diagnosis'])
+         #select_feature.transform(data.drop('diagnosis',axis = 1))
+         #selected_columns = np.array(data.drop('diagnosis',axis = 1).columns)[select_feature.get_support()]
+         #selected_columns=['concave points_worst','perimeter_worst','concave points_mean','radius_worst','perimeter_mean','area_worst','radius_mean','area_mean','concavity_mean','concavity_worst']
+         #Selected_df = pd.DataFrame(select_feature.transform(data.drop('diagnosis',axis = 1)),columns=selected_columns)
+         Selected_df=data[['concave points_worst','perimeter_worst','concave points_mean','radius_worst','perimeter_mean','area_worst','radius_mean','area_mean','concavity_mean','concavity_worst']]
          y = data.diagnosis
          return Selected_df,y
 
@@ -64,11 +66,14 @@ if __name__ == "__main__":
  cancerPrediction=CancerPrediction()
  data=cancerPrediction.load_data()
  Selected_df,y=cancerPrediction.selectFeatures(data)
+ print(Selected_df.head(5))
  list_columns= list(Selected_df.columns)
  li=list_columns
  for i in li:
     Selected_df[i]=Selected_df[[i]].apply(cancerPrediction.log_transform, axis=1)
+ print(Selected_df.head(5))
  X_train, X_test, y_train, y_test=cancerPrediction.trainAndTestData(Selected_df,y)
+
  cancerPrediction.svc(X_train, X_test, y_train, y_test)
  
 

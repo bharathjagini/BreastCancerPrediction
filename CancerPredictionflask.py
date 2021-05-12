@@ -52,5 +52,5 @@ def cancerPrediction():
     print(message.sid)                      
     return str(result)
 def log_transform(col):
-    print(col)
+    #print(col)
     return np.log1p(col[0])
